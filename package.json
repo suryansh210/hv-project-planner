@@ -9,14 +9,21 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
+    "@types/react-dropzone": "^4.2.2",
     "archiver": "^7.0.1",
     "csv-stringify": "^6.6.0",
     "formidable": "^3.5.4",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.4",
     "jszip": "^3.10.1",
     "next": "16.1.1",
     "papaparse": "^5.5.3",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-dropzone": "^14.3.8",
+    "recharts": "^3.6.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

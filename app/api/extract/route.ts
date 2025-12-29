@@ -152,26 +152,23 @@ export async function POST(request: NextRequest) {
     const conditionsCsv = generateCsv(conditions, conditionHeaders);
     const sdkCsv = generateSdkCsv(sdkMap);
 
-    // -------- CREATE ZIP --------
-    const archive = archiver('zip', { zlib: { level: 9 } });
-    const buffers: Buffer[] = [];
-
-    archive.on('data', (chunk) => buffers.push(chunk));
-    archive.on('end', () => {});
-
-    if (modulesCsv) archive.append(modulesCsv, { name: `${workflowName}__modules.csv` });
-    if (conditionsCsv) archive.append(conditionsCsv, { name: `${workflowName}__conditions.csv` });
-    if (sdkCsv) archive.append(sdkCsv, { name: `${workflowName}__sdk_response.csv` });
-
-    await archive.finalize();
-
-    const zipBuffer = Buffer.concat(buffers);
-
-    return new NextResponse(zipBuffer, {
+    // -------- RETURN DATA FOR PREVIEW --------
+    return NextResponse.json({
+      modules: modules,
+      conditions: conditions,
+      sdk: Array.from(sdkMap.entries()).sort(([a], [b]) => a.localeCompare(b)).map(([key, meaning]) => ({ keyName: key, keyMeaning: meaning })),
       headers: {
-        'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="${workflowName}_extracted.zip"`,
+        modules: MODULE_FIELDS,
+        conditions: Array.from(conditionHeaders),
+        sdk: ['keyName', 'keyMeaning']
       },
+      stats: {
+        totalModules: modules.length,
+        totalConditions: conditions.length,
+        totalSdkKeys: sdkMap.size,
+        moduleTypes: [...new Set(modules.map(m => m.type))],
+        conditionKeys: Array.from(conditionHeaders)
+      }
     });
   } catch (error) {
     console.error(error);
