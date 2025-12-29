@@ -83,7 +83,7 @@ export default function Home() {
             <h1 className="text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-800 bg-clip-text text-transparent">
               HyperVerge Workflow Extractor
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl">
+            <p className="text-xl text-gray-600 max-w-4xl leading-relaxed">
               Transform your JSON workflow files into structured CSV data. Extract modules, conditions, and SDK responses with precision and ease.
             </p>
           </div>
