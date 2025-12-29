@@ -1,13 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Workflow Extractor
+
+A web application to extract modules, conditions, and SDK responses from JSON workflow files and download them as CSV files in a ZIP archive.
+
+## Features
+
+- Upload JSON workflow files
+- Extract modules with fields: type, subType, id, nextStep, name, version, stepId
+- Extract conditions with dynamic headers
+- Extract SDK response keys with humanized meanings
+- Download extracted data as a ZIP file containing CSV files
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+4. Upload a JSON file and click "Extract and Download" to get the ZIP file.
+
+## API
+
+- `POST /api/extract`: Accepts a JSON file upload and returns a ZIP file with CSVs.
+
+## Technologies
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- csv-stringify
+- archiver
 # or
 pnpm dev
 # or
